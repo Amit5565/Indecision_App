@@ -4,78 +4,106 @@
 
 
 //In JSX we can have only one root element
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        "Amit"
-    ),
-    React.createElement(
-        "p",
-        null,
-        "Model Town"
-    ),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "IAS"
-        )
-    )
-);
+
 
 //IN JSX Class is called className
 var kahadalnahai = document.getElementById("app");
 
-var count = 0;
-
-var add1 = function add1() {
-    count = count + 1;
-    rendercounterapp();
+var numbers = [55, 66, 77];
+var frame = {
+    title: "Indecision App",
+    subtitle: "Phhkhh",
+    options: []
 };
 
-var minus1 = function minus1() {
-    count--;
-    rendercounterapp();
+var onformsubmit = function onformsubmit(e) {
+    //TO avoid full page reference
+    e.preventDefault();
+
+    //To hold the value that the user had entered
+
+    var option = e.target.elements.options.value;
+    if (option) {
+        frame.options.push(option);
+        //Wiping the input
+        e.target.elements.options.value = "";
+        render();
+    }
 };
+
+//Reset Button to clear array to ""
+//on click->wipe the array
+
 
 var reset = function reset() {
-    count = 0;
-    rendercounterapp();
+
+    frame.options.splice(0, frame.options.length);
+    render();
 };
 
-var rendercounterapp = function rendercounterapp() {
+var render = function render() {
 
-    var template2 = React.createElement(
+    var template = React.createElement(
         "div",
         null,
         React.createElement(
             "h1",
             null,
-            "Count :",
-            count
+            frame.title
+        ),
+        frame.subtitle && React.createElement(
+            "p",
+            null,
+            frame.subtitle
         ),
         React.createElement(
-            "button",
-            { onClick: add1 },
-            "+1 "
+            "p",
+            null,
+            frame.options.length > 0 ? "Here are your options" : "No options"
         ),
         React.createElement(
-            "button",
-            { onClick: minus1 },
-            " -1"
+            "p",
+            null,
+            frame.options.length
         ),
         React.createElement(
             "button",
             { onClick: reset },
-            "reset"
+            "Reset"
+        ),
+        numbers.map(function (element) {
+            return React.createElement(
+                "p",
+                { key: element },
+                " Number:",
+                element,
+                " "
+            );
+        }),
+        React.createElement(
+            "ol",
+            null,
+            frame.options.map(function (element) {
+                return React.createElement(
+                    "li",
+                    { key: element },
+                    " ",
+                    element
+                );
+            })
+        ),
+        React.createElement(
+            "form",
+            { onSubmit: onformsubmit },
+            React.createElement("input", { type: "text", name: "options", placeholder: "Add something" }),
+            React.createElement(
+                "button",
+                null,
+                "Add Options"
+            )
         )
     );
 
-    ReactDOM.render(template2, kahadalnahai);
+    ReactDOM.render(template, kahadalnahai);
 };
-rendercounterapp();
+render();
