@@ -1,15 +1,81 @@
 "use strict";
 
-//ES-6 Arrow Functions
+//This is where we need to put jsx
 
-//console.log("sfsfsjfks");
 
-// const square= (x)=>{
-//     return x*x;
-// }
+//In JSX we can have only one root element
+var template = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Amit"
+    ),
+    React.createElement(
+        "p",
+        null,
+        "Model Town"
+    ),
+    React.createElement(
+        "ol",
+        null,
+        React.createElement(
+            "li",
+            null,
+            "IAS"
+        )
+    )
+);
 
-var square = function square(x) {
-  return x * x;
+//IN JSX Class is called className
+var kahadalnahai = document.getElementById("app");
+
+var count = 0;
+
+var add1 = function add1() {
+    count = count + 1;
+    rendercounterapp();
 };
 
-console.log(square(8));
+var minus1 = function minus1() {
+    count--;
+    rendercounterapp();
+};
+
+var reset = function reset() {
+    count = 0;
+    rendercounterapp();
+};
+
+var rendercounterapp = function rendercounterapp() {
+
+    var template2 = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Count :",
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: add1 },
+            "+1 "
+        ),
+        React.createElement(
+            "button",
+            { onClick: minus1 },
+            " -1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: reset },
+            "reset"
+        )
+    );
+
+    ReactDOM.render(template2, kahadalnahai);
+};
+rendercounterapp();

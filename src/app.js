@@ -5,46 +5,49 @@
 const template= (
 <div>
  <h1>Amit</h1>
- <p>Amit</p>
+ <p>Model Town</p>
  <ol>
- <li>jljlljl</li>
+ <li>IAS</li>
  </ol>
  </div>
 );
+
+//IN JSX Class is called className
 const kahadalnahai=document.getElementById("app");
 
+let count=0;
 
-let user={
-  
-    Age:20,
-    Location:"fs.fkskf.sk.f"
+const add1=()=>{
+    count=count+1;
+    rendercounterapp();
 }
 
+const minus1=()=>{
+    count--;
+    rendercounterapp();
+}
+
+const reset=()=>{
+   count=0;
+   rendercounterapp();
+}
+
+const rendercounterapp= () =>{
 
 
-//Conditional Rendering
- function getAge(age){
-
-    if(age>15)
-    {
-        return "Your age is  greater";
-    }
-    else{
-        return "Welcome";
-    }
+    const template2= (
+        <div>
+        
+        <h1>Count :{count}</h1>
+        <button onClick={add1}>+1 </button>
+         <button onClick={minus1}> -1</button>
+         <button onClick={reset}>reset</button>
+        </div>
+    )
     
- }
-var template2=(
-<div>
-<h1>{user.name ? user.name:'Ananonymous'}</h1>
-{user.Age>=18 && <p>Age:{user.Age}</p>}
-<p>Location:{user.Location}</p>
-</div>
-);
-
-
-
-
-
-ReactDOM.render(template2,kahadalnahai);
-//ReactDOM.render(template,kahadalnahai);
+    
+    ReactDOM.render(template2,kahadalnahai);
+    
+    
+}
+rendercounterapp();

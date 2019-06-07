@@ -8,7 +8,7 @@
 //this keyword- no longer bound
 const user={
     name:"Amit",
-    cities:["Delhi","Mumbai","Gsfsfoa"],
+    cities:["Delhi","Mumbai","Kolkataindia"],
     printplaceslived(){
         
         // this.cities.forEach((city)=>{
@@ -16,19 +16,19 @@ const user={
         // }); 
 
 
-        //       for(var i=0;i<3;i++)
-        //    {
-        //     console.log(this.name+" has lived in "+this.cities[i]);
+              for(var i=0;i<this.cities.length;i++)
+           {
+            console.log(this.name+" has lived in "+this.cities[i]);
             
-        //    }
+           }
 
 
         //Using Map
-        const citymsg=this.cities.map((city) =>{
-                   return this.name +" has lived in "+city
-        })
-        return citymsg;
-        }
+        // const citymsg=this.cities.map((city) =>{
+        //            return this.name +" has lived in "+city
+        // })
+        // return citymsg;
+         }
 }
 
 console.log(user.printplaceslived());
