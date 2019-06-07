@@ -10,7 +10,7 @@ const kahadalnahai=document.getElementById("app");
 const numbers=[55,66,77];
 const frame={
     title:"Indecision App",
-    subtitle:"Phhkhh",
+    subtitle:"Put your life in the hands of the computer",
     options:[]
 }
 
@@ -43,6 +43,14 @@ const reset=() =>{
     render();
 }
 
+
+const onMakeDecision=() =>{
+ 
+    const random=Math.floor(Math.random()*frame.options.length);
+    const option=frame.options[random];
+    alert(option);
+}
+
 const render= () =>{
 
     const template= (
@@ -51,14 +59,8 @@ const render= () =>{
          {frame.subtitle && <p>{frame.subtitle}</p>
          } 
          <p>{frame.options.length>0?"Here are your options":"No options"}</p>
-         <p>{frame.options.length}</p>
+          <button disabled={frame.options.length>0? false:true} onClick={onMakeDecision}>What should I do??</button>
          <button onClick={reset}>Reset</button>
-         {
-             numbers.map((element) => {
-                 return <p key={element}> Number:{element} </p>;
-             })
-         }
-         
          
          <ol>
          {
