@@ -1,81 +1,79 @@
-//This is where we need to put jsx
 
+class IndecisionApp extends React.Component{
+    render(){
+        return(
+            <div>
+            <Header/>
+            <Action/>
+            <Options/>
+            <AddOption/>
+            </div>
 
-//In JSX we can have only one root element
+        )
+    }
+}
 
+class Header extends React.Component{
+     render(){
+         return (
+             <div>
+             <h1>Indecision App</h1>
+             <h2>Put your life in the hands of the computer</h2>
+             </div>
+         )
+     }
+}
 
-//IN JSX Class is called className
-const kahadalnahai=document.getElementById("app");
-
-const numbers=[55,66,77];
-const frame={
-    title:"Indecision App",
-    subtitle:"Put your life in the hands of the computer",
-    options:[]
+class Action extends React.Component{
+    render(){
+        return(
+            <div>
+            <button>What should I do ?</button>
+            </div>
+        )
+    }
 }
 
 
-const onformsubmit=(e) =>{
-  //TO avoid full page reference
-  e.preventDefault();
-   
-  //To hold the value that the user had entered
+class Options extends React.Component{
 
-  const option=e.target.elements.options.value;
-  if(option)
-  {
-      frame.options.push(option);
-      //Wiping the input
-      e.target.elements.options.value="";
-      render();
-  }
+    render(){
+        return (
+            <div>
+            <p>Here are the options</p>
+            <Option/>
+            </div>
+        )
+    }
 }
 
-
-//Reset Button to clear array to ""
-//on click->wipe the array
-
-
-
-const reset=() =>{
-
-    frame.options.splice(0,frame.options.length);
-    render();
+class Option extends React.Component{
+    render(){
+        return(
+            <p>This is the option Component</p>
+        )
+    }
+}
+class AddOption extends React.Component{
+    render(){
+        return(
+            <div>
+            <form>
+            <input type="text" placeholder="Add Something"></input>
+            <button>Add Option</button>
+            </form>
+            </div>
+        )
+    }
 }
 
-
-const onMakeDecision=() =>{
- 
-    const random=Math.floor(Math.random()*frame.options.length);
-    const option=frame.options[random];
-    alert(option);
-}
-
-const render= () =>{
-
-    const template= (
-        <div>
-         <h1>{frame.title}</h1>
-         {frame.subtitle && <p>{frame.subtitle}</p>
-         } 
-         <p>{frame.options.length>0?"Here are your options":"No options"}</p>
-          <button disabled={frame.options.length>0? false:true} onClick={onMakeDecision}>What should I do??</button>
-         <button onClick={reset}>Reset</button>
-         
-         <ol>
-         {
-             frame.options.map((element) =>{
-                return <li key={element}> {element}</li>
-             })
-         }
-         </ol>
-         <form onSubmit={onformsubmit}>
-          <input type="text" name="options" placeholder="Add something"/>
-          <button>Add Options</button> 
-         </form>
-         </div>
-        );
-        
-        ReactDOM.render(template,kahadalnahai);
-}
-render();
+//No longer needed with parent component
+// const jsx=(
+//     <div>
+//     <Header/>
+//     <Action/>
+//     <Options/>
+//     <AddOption/>
+//     </div>
+// )
+ReactDOM.render(<IndecisionApp/>,document.getElementById("app"))
