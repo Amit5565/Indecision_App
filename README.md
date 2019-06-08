@@ -18,3 +18,22 @@
 eg:{
              [<p>1</p>,<p>2</p>,<p>3</p>]
    }
+
+
+   #ES-6 Classes
+    this.name=name || "test"; matlab agar name hai to assign karo warna test assign kro
+
+    class Person{
+
+   constructor(//defined value if not avaliable name="Ananymous"){  //Is called by deafult
+       this.name=name
+   }
+
+   return `Hi I am ${this.name} !`;
+   ES-6 template strings
+
+
+#Way to create subclass 
+   class Student ###extends### Person
+   super is used for referring to parent class
+}

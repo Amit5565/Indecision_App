@@ -1,35 +1,87 @@
 "use strict";
 
-var app = document.getElementById("app");
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var visibility = false;
-var toggle = function toggle() {
-  visibility = !visibility;
-  render();
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var render = function render() {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "h1",
-      null,
-      "Visibility Toggle"
-    ),
-    React.createElement(
-      "button",
-      { onClick: toggle },
-      " ",
-      visibility ? "Hide details" : "Show details"
-    ),
-    React.createElement(
-      "p",
-      null,
-      visibility ? "Surprise I am Amit Kumar Singh an IAS officer" : ""
-    )
-  );
-  ReactDOM.render(template, app);
-};
-render();
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Person = function () {
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Ananymous";
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+        _classCallCheck(this, Person);
+
+        //Is called by deafult
+        this.name = name;
+        this.age = age;
+    }
+
+    _createClass(Person, [{
+        key: "getGreeting",
+        value: function getGreeting() {
+            // return "Hi I am "+this.name +"!";
+            return "Hi I am " + this.name + " !";
+        }
+    }, {
+        key: "getDescription",
+        value: function getDescription() {
+            return this.name + " is " + this.age + " year(s) old";
+        }
+    }]);
+
+    return Person;
+}();
+
+//Creating sub class
+
+var Student = function (_Person) {
+    _inherits(Student, _Person);
+
+    function Student(name, age) {
+        var subject = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "undecided";
+
+        _classCallCheck(this, Student);
+
+        var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
+        //call parent constructor 
+
+
+        _this.subject = subject;
+        return _this;
+    }
+
+    _createClass(Student, [{
+        key: "hasSubject",
+        value: function hasSubject() {
+            return !!this.subject;
+        }
+        //Overriding a Function
+
+    }, {
+        key: "getDescription",
+        value: function getDescription() {
+            var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), "getDescription", this).call(this);
+            if (!!this.hasSubject()) {
+                description += " His subject is " + this.subject;
+            }
+            return description;
+        }
+    }]);
+
+    return Student;
+}(Person);
+
+//Creating instance of a class
+
+
+var me = new Student("Amit", 10, "Computer Science");
+//console.log(me.getGreeting());
+console.log(me.hasSubject(), me.getDescription());
+var other = new Person();
+console.log(other);
