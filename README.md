@@ -23,3 +23,38 @@ To manipulate our default state
        In setState write only those values which u wnat to update
 
 #setState is asynchronous in nature which means that it does not update variable in the very next line
+
+
+#To add default value to props
+Header.defaultProps={
+    title:"jds,jjfd"
+}
+
+
+#Another way of writing this.setState
+
+this.setState(() =>({list:[]}))
+
+
+#Lifecycle Methods
+ 
+    componentDidMount(){
+        console.log("it gets mouted");
+        
+    }
+
+    //Another Lifecycle method
+    componentDidUpdate() {
+        console.log("Update .....");
+        
+        
+    }
+    //Another Lifecycle method
+    componentWillUnmount() {
+        console.log("unmount....");
+        
+    }
+    
+#parseInt(string,10)
+converts string to int
+here 10 is the base 

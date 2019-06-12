@@ -11,17 +11,33 @@ class CounterApp extends React.Component{
 
     //Setting default value for setting state
     this.state={
-        count:0
+        count:props.count
     }
 
     }
 
+    componentDidMount(){
+       
+        const json=localStorage.getItem("count");
+       console.log(json);
+       
+        this.setState(()=>({
+            count:json
+        }))
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const json=(prevState.count);
+        
+        localStorage.setItem("count",json);
+    }
+    
     handleOne(){
         // alert("+1");
        //To manipulate our default state
        this.setState((prevState) => {
            return {
-               count:prevState.count+1
+               count:parseInt(prevState.count,10)+1
            };
        });
     }
@@ -54,5 +70,9 @@ class CounterApp extends React.Component{
         )
     }
 }
-ReactDOM.render(<CounterApp/>,document.getElementById("app"));
+
+CounterApp.defaultProps={
+    count:0
+}
+ReactDOM.render(<CounterApp />,document.getElementById("app"));
 
