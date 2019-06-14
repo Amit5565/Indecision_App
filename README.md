@@ -1,60 +1,62 @@
-# React Component
+#Webpack
+-> Add babel-cli and live-server locally so that we can see it in the package.json file
 
-#use upper case letter for class extending react(upper cse convention)
+-> Make a script object in package.json file to rename the long commands of live-server and babel
 
-#event handlers should be outside render()
-trim() is used for removing initial spaces
+-> Also add a key value pair of webpack
+
+-> Finally make a webpack.config.js file in the root of the application
+
+#Import and export
+
+->First export the function  from utils.js file 
+.For eg:export{ square}
+
+->Then import the exported function from utils.js as import{square} from "utils.js"
+
+#Both square should match in both app.js and utils.js
 
 
-#Inside options to avoid writing bind for handleRemoveAll event handler
- constructor(props){
-           super(props);
-           this.handleRemoveAll=this.handleRemoveAll.bind(this);
+#We can have only 1 default export
+export{square, add, subtract as default}
+
+for using default export
+import subtract, {square, add} from "utils.js"
+
+#export default cannot come before const
+
+const subtract=(a,b) => a-b;
+export default subtract
+
+export default can come before class
+
+
+#To get  to know where the error comes from 
+
+create devtool:"cheap-module-eval-source-map"
+
+#To use new class features add 
+
+"plugin":[
+        "transform-class-properties"
+    ]
+    in .babelrc
+
+    and also install locally babel-plugin-transform-class-properties
+#Old and New Syntax
+    class OldSyntax{
+    constructor(){
+        this.name="Amit"
     }
+}
+const oldsyntax=new OldSyntax();
+console.log(oldsyntax);
 
-# State
-To manipulate our default state
-       this.setState(() => {
-           return {
-               count:1
-           };
-       });
+//New Synatx
 
-       In setState write only those values which u wnat to update
-
-#setState is asynchronous in nature which means that it does not update variable in the very next line
-
-
-#To add default value to props
-Header.defaultProps={
-    title:"jds,jjfd"
+class NewSyntax{
+    name="Amit"
 }
 
-
-#Another way of writing this.setState
-
-this.setState(() =>({list:[]}))
-
-
-#Lifecycle Methods
- 
-    componentDidMount(){
-        console.log("it gets mouted");
-        
-    }
-
-    //Another Lifecycle method
-    componentDidUpdate() {
-        console.log("Update .....");
-        
-        
-    }
-    //Another Lifecycle method
-    componentWillUnmount() {
-        console.log("unmount....");
-        
-    }
-    
-#parseInt(string,10)
-converts string to int
-here 10 is the base 
+const newsyntax=new NewSyntax();
+console.log(newsyntax)
