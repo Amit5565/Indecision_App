@@ -10,3 +10,6 @@ export const canDrink=(age)=>{
     if(age>=21)return true;
     else return false;
 }
+import validator from "validator";
+
+console.log(validator.isEmail("test"));n

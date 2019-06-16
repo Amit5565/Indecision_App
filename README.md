@@ -60,3 +60,7 @@ class NewSyntax{
 
 const newsyntax=new NewSyntax();
 console.log(newsyntax)
+
+#We can define tags inline at time of render
+
+Then we use props.children in a stateless component to acces the inline content

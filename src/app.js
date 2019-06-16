@@ -1,13 +1,32 @@
-// import './utils.js';
-
-//Not an object
-import subtract,{square, add } from "./utils.js"
-
-console.log("App is running!!!");
-console.log(square(4));
-console.log(add(3,4));
-console.log(subtract(10,6))
+//install -> import->use
 
 
-// import{isAdult, canDrink} from "./person.js"
-// console.log(isAdult(23), canDrink(14));
+import React from "react"
+import ReactDOM from "react-dom"
+import IndecisionApp from "./components/IndecisionApp.js"
+import 'normalize.css/normalize.css'
+ import "./styles/styles.scss"
+
+
+// const Layout=(props) => {
+//     return (
+//         <div>
+//         <p>Header</p>
+//         {props.children}
+//         <p>Footer</p>
+//         </div>
+//     )
+// }
+
+
+// ReactDOM.render(
+//     <Layout>
+//     <p>This is inline</p>
+//     </Layout>
+//     ,document.getElementById("app"))
+
+    ReactDOM.render(
+        <IndecisionApp/>
+        ,document.getElementById("app"))
+
+
